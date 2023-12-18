@@ -16,7 +16,7 @@ final class UploadedFileValidator extends ConstraintValidator
      * @param File\UploadedFile $uploadedFile
      * @param UploadedFile $constraint
      */
-    public function validate($uploadedFile, Constraint $constraint)
+    public function validate($uploadedFile, Constraint $constraint): void
     {
         if (!$constraint instanceof UploadedFile) {
             throw new UnexpectedTypeException($constraint, UploadedFile::class);
@@ -33,14 +33,13 @@ final class UploadedFileValidator extends ConstraintValidator
         $allowedTypes = $constraint->types;
         $allowedMimeTypes = array_merge(...array_values($allowedTypes));
 
-        $guessedExtension = $uploadedFile->guessExtension();
-        $originalExtension = $uploadedFile->getClientOriginalExtension();
+        $guessedExtension = strtolower($uploadedFile->guessExtension() ?? '');
+        $originalExtension = strtolower($uploadedFile->getClientOriginalExtension());
 
-        $guessedMimeType = $uploadedFile->getMimeType();
-        $originalMimeType = $uploadedFile->getClientMimeType();
+        $guessedMimeType = strtolower($uploadedFile->getMimeType() ?? '');
+        $originalMimeType = strtolower($uploadedFile->getClientMimeType());
 
         if (!array_key_exists($originalExtension, $allowedTypes)) {
-            // Unsupported extension.
             $this->context->buildViolation($constraint->unsupportedExtensionMessage)
                 ->setParameter('{{ extension }}', $originalExtension)
                 ->setParameter('{{ extensions }}', implode(', ', array_keys($allowedTypes)))
@@ -49,30 +48,21 @@ final class UploadedFileValidator extends ConstraintValidator
             return;
         }
 
-        if (!in_array($originalMimeType, $allowedMimeTypes, true)) {
-            // Unsupported mimeType.
+        if (!array_key_exists($guessedExtension, $allowedTypes)) {
             $this->context->buildViolation($constraint->fileIsCorruptedMessage)
                 ->addViolation()
             ;
             return;
         }
 
-        if ($guessedExtension !== $originalExtension) {
-            // Extension doesn't match file's content.
+        if (!in_array($originalMimeType, $allowedMimeTypes, true)) {
             $this->context->buildViolation($constraint->fileIsCorruptedMessage)
                 ->addViolation()
             ;
+            return;
         }
 
-        if ($guessedMimeType !== $originalMimeType) {
-            // MimeType doesn't match file's content.
-            $this->context->buildViolation($constraint->fileIsCorruptedMessage)
-                ->addViolation()
-            ;
-        }
-
-        if (!in_array($originalMimeType, $allowedTypes[$originalExtension], true)) {
-            // MimeType doesn't match extension.
+        if (!in_array($guessedMimeType, $allowedMimeTypes, true)) {
             $this->context->buildViolation($constraint->fileIsCorruptedMessage)
                 ->addViolation()
             ;

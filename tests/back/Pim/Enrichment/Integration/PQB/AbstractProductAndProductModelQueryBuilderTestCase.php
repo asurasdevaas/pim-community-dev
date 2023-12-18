@@ -57,7 +57,7 @@ abstract class AbstractProductAndProductModelQueryBuilderTestCase extends TestCa
         );
 
         foreach ($filters as $filter) {
-            $context = isset($filter[3]) ? $filter[3] : [];
+            $context = $filter[3] ?? [];
             $pqb->addFilter($filter[0], $filter[1], $filter[2], $context);
         }
 
@@ -113,19 +113,5 @@ abstract class AbstractProductAndProductModelQueryBuilderTestCase extends TestCa
 
         return null !== $identifier ? $this->get('pim_catalog.repository.product')->findOneByIdentifier($identifier) :
             $this->get('pim_catalog.repository.product')->find($uuid);
-    }
-
-    protected function getUserId(string $username): int
-    {
-        $query = <<<SQL
-            SELECT id FROM oro_user WHERE username = :username
-        SQL;
-        $stmt = $this->get('database_connection')->executeQuery($query, ['username' => $username]);
-        $id = $stmt->fetchOne();
-        if (null === $id) {
-            throw new \InvalidArgumentException(\sprintf('No user exists with username "%s"', $username));
-        }
-
-        return \intval($id);
     }
 }

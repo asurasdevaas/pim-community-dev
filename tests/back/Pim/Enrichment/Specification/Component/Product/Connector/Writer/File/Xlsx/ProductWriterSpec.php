@@ -55,7 +55,7 @@ class ProductWriterSpec extends ObjectBehavior
         $this->filesystem = new Filesystem();
         $this->filesystem->mkdir($this->directory);
 
-        $bufferFactory->create()->willReturn($flatRowBuffer);
+        $bufferFactory->create(null)->willReturn($flatRowBuffer);
 
         $this->beConstructedWith(
             $arrayConverter,
@@ -126,7 +126,8 @@ class ProductWriterSpec extends ObjectBehavior
             $flatRowBuffer,
             ['type' => 'xlsx'],
             $this->directory . 'XLSX_Product_export_product.xlsx',
-            10000
+            10000,
+            false
         )
             ->shouldBeCalled()
             ->willReturn(
@@ -196,7 +197,8 @@ class ProductWriterSpec extends ObjectBehavior
             $flatRowBuffer,
             ['type' => 'xlsx'],
             $this->directory . 'XLSX_Product_export_product.xlsx',
-            10000
+            10000,
+            true
         )->shouldBeCalled()->willReturn(
             [
                 $this->directory . 'XLSX_Product_export_product1.xlsx',

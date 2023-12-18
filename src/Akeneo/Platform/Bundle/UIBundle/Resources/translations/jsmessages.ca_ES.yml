@@ -305,8 +305,6 @@ pim_enrich.entity.job_execution:
       upload: Deixeu anar el fitxer {{ type }} aquí, o clic per buscar en el disc
     download:
       archive: Descarregar arxiu generat
-      output: Descarregar arxiu generat
-      input: Descarregar arxius llegits
       invalid_xlsx: Descarregar dades no vàlides
       invalid_csv: Descarregar dades no vàlides
 pim_title:
@@ -464,6 +462,8 @@ pim_system:
     button:
       label: Restableix la instància
       confirm: Reinicieu i tanqueu la sessió
+    error_notification: S'ha produït un error durant el restabliment de la instància; poseu-vos en contacte amb l'administrador del vostre sistema.
+    jobs_running: No podeu restablir la vostra instància en aquest moment, ja que alguns processos encara estan a la cua o en execució.
   sandbox:
     helper:
       text: Aquest és un entorn sandbox; els vostres canvis no afectaran la vostra producció.

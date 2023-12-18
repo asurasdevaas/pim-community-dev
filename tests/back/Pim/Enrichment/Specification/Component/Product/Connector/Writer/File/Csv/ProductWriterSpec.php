@@ -59,7 +59,7 @@ class ProductWriterSpec extends ObjectBehavior
         $this->filesystem = new Filesystem();
         $this->filesystem->mkdir($this->directory);
 
-        $bufferFactory->create()->willReturn($flatRowBuffer);
+        $bufferFactory->create(null)->willReturn($flatRowBuffer);
 
         $this->beConstructedWith(
             $arrayConverter,
@@ -106,7 +106,8 @@ class ProductWriterSpec extends ObjectBehavior
         StepExecution $stepExecution,
         JobExecution $jobExecution,
         FileInfoInterface $fileInfo,
-        FilesystemOperator $catalogFilesystem
+        FilesystemOperator $catalogFilesystem,
+        BufferFactory $bufferFactory
     ) {
         $jobParameters = new JobParameters(
             [
@@ -203,10 +204,7 @@ class ProductWriterSpec extends ObjectBehavior
         ];
 
         $arrayConverter->convert($productStandardWithMedia, [])->shouldBeCalled()->willReturn($flatProduct);
-        $generateHeadersFromFamilyCodes->__invoke(["clothes"], "ecommerce", ["fr_FR", "en_US"])->shouldBeCalled()
-            ->willReturn([]);
-
-        $flatRowBuffer->write([$flatProduct], ['withHeader' => true])->shouldBeCalled();
+        $flatRowBuffer->write([$flatProduct])->shouldBeCalled();
 
         $this->initialize();
         $this->write([$productStandard]);
@@ -376,10 +374,7 @@ class ProductWriterSpec extends ObjectBehavior
         ];
 
         $arrayConverter->convert($productStandard, ['with_uuid' => false])->shouldBeCalled()->willReturn($flatProduct);
-        $generateHeadersFromFamilyCodes->__invoke(["clothes"], "ecommerce", ["fr_FR", "en_US"])->shouldBeCalled()
-            ->willReturn([]);
-
-        $flatRowBuffer->write([$flatProduct], ['withHeader' => true])->shouldBeCalled();
+        $flatRowBuffer->write([$flatProduct])->shouldBeCalled();
 
         $this->initialize();
         $this->write([$productStandard]);
@@ -401,6 +396,8 @@ class ProductWriterSpec extends ObjectBehavior
                 'enclosure' => '"',
                 'storage' => ['type' => 'local', 'file_path' => $this->directory . '%job_label%_product.csv'],
                 'with_label' => false,
+                'withHeader' => false,
+                'filters' => ['structure' => ['locales' => ['fr_FR', 'en_US'], 'scope' => 'ecommerce']],
             ]
         );
 
@@ -413,7 +410,7 @@ class ProductWriterSpec extends ObjectBehavior
         $stepExecution->getJobParameters()->willReturn($jobParameters);
 
         $flusher->setStepExecution($stepExecution)->shouldBeCalled();
-        $flusher->flush($flatRowBuffer, Argument::type('array'), Argument::type('string'), -1)
+        $flusher->flush($flatRowBuffer, Argument::type('array'), Argument::type('string'), -1, false)
             ->shouldBeCalled()
             ->willReturn(
                 [
@@ -474,7 +471,7 @@ class ProductWriterSpec extends ObjectBehavior
             ->willReturn([$descHeader, $nameHeader, $brandHeader]);
 
         $flusher->setStepExecution($stepExecution)->shouldBeCalled();
-        $flusher->flush($flatRowBuffer, Argument::type('array'), Argument::type('string'), -1)
+        $flusher->flush($flatRowBuffer, Argument::type('array'), Argument::type('string'), -1, true)
             ->shouldBeCalled()
             ->willReturn(
                 [
@@ -547,7 +544,7 @@ class ProductWriterSpec extends ObjectBehavior
             ->willReturn([$nameHeader, $descHeader]);
 
         $flusher->setStepExecution($stepExecution)->shouldBeCalled();
-        $flusher->flush($flatRowBuffer, Argument::type('array'), Argument::type('string'), -1)
+        $flusher->flush($flatRowBuffer, Argument::type('array'), Argument::type('string'), -1, true)
             ->shouldBeCalled()
             ->willReturn(
                 [
@@ -730,7 +727,6 @@ class ProductWriterSpec extends ObjectBehavior
                     'Média' => 'wrong/path',
                 ],
             ],
-            ["withHeader" => true]
         )->shouldBeCalled();
         $this->initialize();
         $this->write([$productStandard1, $productStandard2]);

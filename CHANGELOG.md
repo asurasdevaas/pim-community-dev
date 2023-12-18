@@ -15,6 +15,7 @@
 - PIM-10784: Fix API error 500 when filtering for identifier with null value
 - PIM-10785: Fix case-insensitive patch product model
 - PIM-10808: Fix Error message on the family modification when an attribute is as required=0
+- PIM-11072: Fix missing translation key
 - PIM-10802: Fix wysiwyg-field add link event
 - PIM-10796: Fix system-information endpoint with wrong answers
 - PIM-10806: Allow to delete product's attributes with type 'identifier' and ensure grey cross is displayed
@@ -33,6 +34,7 @@
 - PIM-10829: Fix case-sensitive locale on translatable business objects
 - PIM-10840: Fix attribute update date on attribute options change above 10000 options
 - PIM-10793: Add a command to delete expired tokens
+- PIM-11090: Add missing translations for Process Tracker
 - PIM-10840: Fix attribute update date on attribute options change above 10000 options
 - PIM-10868: Fix checkboxes on category trees
 - PIM-10832: Fix compute completeness job after removing an attribute from a family
@@ -96,9 +98,20 @@
 - PIM-11039: Fix export with duplicated labels
 - PIM-10869: Image upload fields now only accept images
 - PIM-11063: Fix validation of generated identifiers
-- PIM-11066: PIM-11066: Fix Missing Values Adder for scopable + localizable + locale specific attributes
+- PIM-11066: Fix Missing Values Adder for scopable + localizable + locale specific attributes
 - PIM-11018: Fix view on Connected App permissions if manage or not
-
+- PIM-11075: Fix import attribute option with numeric code
+- PIM-11062: Fix category filter behavior in product grid
+- PIM-11071: Fix potential divided by zero in completeness calculation
+- PIM-11073: Fix search with underscore on attribute grid
+- PIM-11035: Modify the command to fit with UCS
+- PIM-11091: Fix group association filters
+- PIM-11011: Fix versioning on common attribute values update using no real time imports
+- PIM-10676: [Business-Impact] Prevent users in the PIM to remove all 'system' permissions
+- PIM-11095: Make image extension check case insensitive
+- PIM-11099: Fix regression on filtering products and product models on Identifier containing a dash character
+- PIM-11103: Fix deletion of enriched category attribute when deleting attribute
+- PIM-11101: Prevent user to save bad locale code format (upper/lower : aa_AA)
 
 ## Improvements
 
