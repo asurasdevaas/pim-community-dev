@@ -54,7 +54,7 @@ RUN echo 'APT::Install-Recommends "0" ; APT::Install-Suggests "0" ;' > /etc/apt/
 COPY docker/build/akeneo.ini /etc/php/8.1/cli/conf.d/99-akeneo.ini
 COPY docker/build/akeneo.ini /etc/php/8.1/fpm/conf.d/99-akeneo.ini
 
-CMD ["/usr/bin/supervisord", "-c", "docker/supervisord.conf"]
+#CMD ["/usr/bin/supervisord", "-c", "docker/supervisord.conf"]
 
 FROM base as dev
 
