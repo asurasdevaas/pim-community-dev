@@ -89,5 +89,3 @@ RUN chmod +x /usr/local/bin/composer
 
 RUN mkdir -p /var/www/.composer && chown www-data:www-data /var/www/.composer
 RUN mkdir -p /var/www/.cache && chown www-data:www-data /var/www/.cache
-
-VOLUME /srv/pim
