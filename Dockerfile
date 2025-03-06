@@ -13,6 +13,8 @@ ENV APP_ENV=${APP_ENV:-prod} \
 # Configurar el directorio de trabajo
 WORKDIR /srv/pim
 
+RUN mkdir -p /etc/httpd/logs/error_log
+
 # Copiar archivos locales al contenedor
 COPY . /srv/pim
 COPY docker/httpd.conf /usr/local/apache2/conf/httpd.conf
