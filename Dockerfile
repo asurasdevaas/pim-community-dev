@@ -3,12 +3,7 @@ FROM akeneo/pim-php-dev:8.1
 # Definir variables de entorno
 ENV APP_ENV=${APP_ENV:-prod} \
     COMPOSER_HOME=/var/www/.composer \
-    PHP_IDE_CONFIG=serverName=pim-docker-cli \
-    XDEBUG_MODE=${XDEBUG_MODE:-off} \
-    XDEBUG_CONFIG=client_host=172.17.0.1 \
-    BLACKFIRE_CLIENT_ID=${BLACKFIRE_CLIENT_ID:-client_id} \
-    BLACKFIRE_CLIENT_TOKEN=${BLACKFIRE_CLIENT_TOKEN:-client_token} \
-    EXPERIMENTAL_TEST_DATABASE=${EXPERIMENTAL_TEST_DATABASE:-0}
+    PHP_IDE_CONFIG=serverName=pim-docker-cli
 
 # Configurar el directorio de trabajo
 WORKDIR /srv/pim
