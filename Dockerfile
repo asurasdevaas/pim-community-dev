@@ -20,6 +20,7 @@ COPY docker/akeneo.conf /usr/local/apache2/conf/vhost.conf
 
 # Establecer permisos adecuados
 RUN chown -R www-data:www-data /srv/pim
+RUN chown -R www-data:www-data /etc/httpd/logs/error_log
 
 # Exponer el puerto HTTP
 EXPOSE ${DOCKER_PORT_HTTP:-8080}
