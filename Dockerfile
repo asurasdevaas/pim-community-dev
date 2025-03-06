@@ -22,4 +22,5 @@ COPY ./docker/akeneo.conf /usr/local/apache2/conf/vhost.conf
 EXPOSE 80
 
 # Comando por defecto (mantener el comportamiento original de la imagen base)
-CMD ["apache2-foreground"]
+# Definir el comando por defecto
+CMD ["httpd", "-D", "FOREGROUND"]
