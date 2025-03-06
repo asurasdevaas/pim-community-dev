@@ -14,6 +14,7 @@ ENV APP_ENV=${APP_ENV:-prod} \
 WORKDIR /srv/pim
 
 RUN mkdir -p /etc/httpd/logs/error_log
+RUN mkdir -p /var/log/
 
 # Copiar archivos locales al contenedor
 COPY . /srv/pim
@@ -23,6 +24,7 @@ COPY docker/akeneo.conf /usr/local/apache2/conf/vhost.conf
 # Establecer permisos adecuados
 RUN chown -R www-data:www-data /srv/pim
 RUN chown -R www-data:www-data /etc/httpd/logs/error_log
+RUN chown -R www-data:www-data /var/log/
 
 # Exponer el puerto HTTP
 EXPOSE ${DOCKER_PORT_HTTP:-8080}
