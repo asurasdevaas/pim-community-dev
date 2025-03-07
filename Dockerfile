@@ -19,7 +19,7 @@ COPY ./docker/httpd.conf /usr/local/apache2/conf/httpd.conf
 COPY ./docker/akeneo.conf /usr/local/apache2/conf/vhost.conf
 
 # Exponer el puerto HTTP (por defecto 80)
-EXPOSE 80
+EXPOSE 8080
 
 # Comando por defecto (mantener el comportamiento original de la imagen base)
 # Definir el comando por defecto
