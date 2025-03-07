@@ -13,8 +13,7 @@ USER www-data
 RUN php /usr/local/bin/composer create-project --prefer-dist \
     akeneo/pim-community-standard /srv/pim "dev-master@dev"
 
-# Volver al usuario root
-USER root
+
 
 # Definir variables de entorno
 ENV AKENEO_PIM_URL=http://localhost:8080 \
