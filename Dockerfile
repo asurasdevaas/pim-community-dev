@@ -59,7 +59,6 @@ ENV AKENEO_PIM_URL=http://localhost:8080 \
     SRNT_GOOGLE_BUCKET_NAME=bucket \
     XDEBUG_MODE=off
 
-CMD ["ping", "-c", "4", "$APP_DATABASE_HOST"]
 
 # Validar conexión a MySQL
 #RUN mysql -h"$APP_DATABASE_HOST" -u"$APP_DATABASE_USER" -p"$APP_DATABASE_PASSWORD" -e "SELECT 1" || echo "MySQL connection failed!"
