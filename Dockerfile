@@ -1,19 +1,16 @@
+# Usa la imagen base de Akeneo PHP
 FROM akeneo/pim-php-dev:8.1
 
-# Establecer directorio de trabajo
-WORKDIR /srv/pim
-
-# Configurar permisos
-RUN chown -R www-data:www-data /srv/pim && chmod -R 755 /srv/pim
-
-# Cambiar al usuario www-data
+# Establece el usuario correcto
 USER www-data
 
-# Instalar Akeneo PIM con composer
+# Define el directorio de trabajo
+WORKDIR /srv/pim
+
+# Instala Akeneo PIM
 RUN php /usr/local/bin/composer create-project --prefer-dist \
-    akeneo/pim-community-standard /srv/pim "dev-master@dev"
-
-
+    akeneo/pim-community-standard /srv/pim "dev-master@dev" && \
+    php bin/console pim:installer:install --force
 
 # Definir variables de entorno
 ENV AKENEO_PIM_URL=http://localhost:8080 \
@@ -32,7 +29,6 @@ ENV AKENEO_PIM_URL=http://localhost:8080 \
     APP_INDEX_HOSTS=elasticsearch:9200 \
     APP_PRODUCT_AND_PRODUCT_MODEL_INDEX_NAME=akeneo_pim_product_and_product_model \
     APP_SECRET=ThisTokenIsNotSoSecretChangeIt \
-    COMM_PANEL_API_URL=https://pim-comm-panel.akeneo.com \
     FLAG_COMMUNICATION_CHANNEL_ENABLED=1 \
     FLAG_CONNECT_APP_WITH_PERMISSIONS_ENABLED=0 \
     FLAG_DATA_QUALITY_INSIGHTS_ENABLED=1 \
