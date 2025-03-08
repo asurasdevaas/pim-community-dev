@@ -6,7 +6,7 @@ FROM akeneo/pim-php-dev:8.1
 WORKDIR /srv/pim
 
 # Definir variables de entorno
-ENV AKENEO_PIM_URL=http://localhost:8080 \
+ENV AKENEO_PIM_URL=http://localhost:80 \
     APP_CONNECTION_ERROR_INDEX_NAME=akeneo_connectivity_connection_error \
     APP_DATABASE_HOST=mysql \
     APP_DATABASE_NAME=railway \
@@ -67,7 +67,7 @@ ENV AKENEO_PIM_URL=http://localhost:8080 \
 #RUN rm -rf /path/to/folder/* && php /usr/local/bin/composer create-project --prefer-dist akeneo/pim-community-standard /srv/pim "dev-master@dev" && php bin/console pim:install --force
 
 # Exponer el puerto predeterminado de Akeneo
-EXPOSE 8080
+EXPOSE 80
 
 RUN ls -lah /srv/pim
 
