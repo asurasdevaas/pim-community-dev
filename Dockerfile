@@ -60,8 +60,15 @@ ENV AKENEO_PIM_URL=http://localhost:80 \
     XDEBUG_MODE=off
 
 
-# Install make and other necessary dependencies
-RUN apt-get update && apt-get install -y make && rm -rf /var/lib/apt/lists/*
+# Install make, curl, and Node.js with Yarn
+RUN apt-get update && apt-get install -y \
+    make \
+    curl \
+    gnupg \
+    && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+    && apt-get install -y nodejs \
+    && npm install -g yarn \
+    && rm -rf /var/lib/apt/lists/*
 
 
 # Validar conexión a MySQL
