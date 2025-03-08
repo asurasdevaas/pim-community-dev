@@ -5,11 +5,6 @@ FROM akeneo/pim-php-dev:8.1
 # Define el directorio de trabajo
 WORKDIR /srv/pim
 
-# Instala Akeneo PIM
-RUN php /usr/local/bin/composer create-project --prefer-dist \
-    akeneo/pim-community-standard /srv/pim "dev-master@dev" && \
-    php bin/console pim:installer:install --force
-
 # Definir variables de entorno
 ENV AKENEO_PIM_URL=http://localhost:8080 \
     APP_CONNECTION_ERROR_INDEX_NAME=akeneo_connectivity_connection_error \
@@ -63,6 +58,11 @@ ENV AKENEO_PIM_URL=http://localhost:8080 \
     SRNT_GOOGLE_APPLICATION_CREDENTIALS= \
     SRNT_GOOGLE_BUCKET_NAME=bucket \
     XDEBUG_MODE=off
+
+# Instala Akeneo PIM
+RUN php /usr/local/bin/composer create-project --prefer-dist \
+    akeneo/pim-community-standard /srv/pim "dev-master@dev" && \
+    php bin/console pim:installer:install --force
 
 # Exponer el puerto predeterminado de Akeneo
 EXPOSE 8080
