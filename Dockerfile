@@ -59,6 +59,10 @@ ENV AKENEO_PIM_URL=http://localhost:8080 \
     SRNT_GOOGLE_BUCKET_NAME=bucket \
     XDEBUG_MODE=off
 
+
+# Validar conexión a MySQL
+RUN mysql -h"$APP_DATABASE_HOST" -u"$APP_DATABASE_USER" -p"$APP_DATABASE_PASSWORD" -e "SELECT 1" || echo "MySQL connection failed!"
+
 # Instala Akeneo PIM
 RUN php /usr/local/bin/composer create-project --prefer-dist \
     akeneo/pim-community-standard /srv/pim "dev-master@dev" && \
