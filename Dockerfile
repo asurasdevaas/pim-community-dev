@@ -9,7 +9,7 @@ WORKDIR /srv/pim
 ENV AKENEO_PIM_URL=http://localhost:8080 \
     APP_CONNECTION_ERROR_INDEX_NAME=akeneo_connectivity_connection_error \
     APP_DATABASE_HOST=mysql \
-    APP_DATABASE_NAME=akeneo_pim \
+    APP_DATABASE_NAME=railway \
     APP_DATABASE_PASSWORD=aUIAtgxQWHUgnmNSpmuJYXnUCPMEepiV \
     APP_DATABASE_PORT=3306 \
     APP_DATABASE_USER=root \
