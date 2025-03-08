@@ -62,7 +62,7 @@ ENV AKENEO_PIM_URL=http://localhost:8080 \
 # Instala Akeneo PIM
 RUN php /usr/local/bin/composer create-project --prefer-dist \
     akeneo/pim-community-standard /srv/pim "dev-master@dev" && \
-    php bin/console pim:installer:install --force
+    php bin/console pim:install --force
 
 # Exponer el puerto predeterminado de Akeneo
 EXPOSE 8080
