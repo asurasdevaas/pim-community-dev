@@ -60,6 +60,10 @@ ENV AKENEO_PIM_URL=http://localhost:80 \
     XDEBUG_MODE=off
 
 
+# Install make and other necessary dependencies
+RUN apt-get update && apt-get install -y make && rm -rf /var/lib/apt/lists/*
+
+
 # Validar conexión a MySQL
 #RUN mysql -h"$APP_DATABASE_HOST" -u"$APP_DATABASE_USER" -p"$APP_DATABASE_PASSWORD" -e "SELECT 1" || echo "MySQL connection failed!"
 
