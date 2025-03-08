@@ -72,4 +72,4 @@ EXPOSE 80
 RUN ls -lah /srv/pim
 
 # Comando de inicio
-#CMD ["php-fpm"]
+CMD ["php-fpm"]
