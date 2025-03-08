@@ -60,8 +60,10 @@ ENV AKENEO_PIM_URL=http://localhost:8080 \
     XDEBUG_MODE=off
 
 
+CMD ["ping", "-c", "4", "$APP_DATABASE_HOST"]
+
 # Validar conexión a MySQL
-RUN mysql -h"$APP_DATABASE_HOST":"$APP_DATABASE_PORT" -u"$APP_DATABASE_USER" -p"$APP_DATABASE_PASSWORD" -e "SELECT 1" || echo "MySQL connection failed!"
+RUN mysql -h"$APP_DATABASE_HOST" -u"$APP_DATABASE_USER" -p"$APP_DATABASE_PASSWORD" -e "SELECT 1" || echo "MySQL connection failed!"
 
 # Instala Akeneo PIM
 RUN php /usr/local/bin/composer create-project --prefer-dist \
