@@ -8,9 +8,9 @@ WORKDIR /srv/pim
 # Definir variables de entorno
 ENV AKENEO_PIM_URL=http://localhost:8080 \
     APP_CONNECTION_ERROR_INDEX_NAME=akeneo_connectivity_connection_error \
-    APP_DATABASE_HOST=mysql-production-149a.up.railway.app \
+    APP_DATABASE_HOST=mysql \
     APP_DATABASE_NAME=railway \
-    APP_DATABASE_PASSWORD=aUIAtgxQWHUgnmNSpmuJYXnUCPMEepiV \
+    APP_DATABASE_PASSWORD=CLUKIqFZZdmtiLMRvCnTNzqGZMkcYFqi \
     APP_DATABASE_PORT=null \
     APP_DATABASE_USER=root \
     APP_DEBUG=0 \
@@ -59,19 +59,16 @@ ENV AKENEO_PIM_URL=http://localhost:8080 \
     SRNT_GOOGLE_BUCKET_NAME=bucket \
     XDEBUG_MODE=off
 
-
 CMD ["ping", "-c", "4", "$APP_DATABASE_HOST"]
 
 # Validar conexión a MySQL
-RUN mysql -h"$APP_DATABASE_HOST" -u"$APP_DATABASE_USER" -p"$APP_DATABASE_PASSWORD" -e "SELECT 1" || echo "MySQL connection failed!"
+#RUN mysql -h"$APP_DATABASE_HOST" -u"$APP_DATABASE_USER" -p"$APP_DATABASE_PASSWORD" -e "SELECT 1" || echo "MySQL connection failed!"
 
 # Instala Akeneo PIM
-RUN php /usr/local/bin/composer create-project --prefer-dist \
-    akeneo/pim-community-standard /srv/pim "dev-master@dev" && \
-    php bin/console pim:install --force
+#RUN rm -rf /path/to/folder/* && php /usr/local/bin/composer create-project --prefer-dist akeneo/pim-community-standard /srv/pim "dev-master@dev" && php bin/console pim:install --force
 
 # Exponer el puerto predeterminado de Akeneo
 EXPOSE 8080
 
 # Comando de inicio
-CMD ["php-fpm"]
+#CMD ["php-fpm"]
