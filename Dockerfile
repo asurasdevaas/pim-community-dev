@@ -69,5 +69,7 @@ ENV AKENEO_PIM_URL=http://localhost:8080 \
 # Exponer el puerto predeterminado de Akeneo
 EXPOSE 8080
 
+RUN ls -lah /srv/pim
+
 # Comando de inicio
 #CMD ["php-fpm"]
