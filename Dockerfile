@@ -81,6 +81,6 @@ RUN php /usr/local/bin/composer create-project --prefer-dist akeneo/pim-communit
 # Exponer el puerto predeterminado de Akeneo
 EXPOSE 8080
 
-RUN php bin/console
+RUN pim:update:check-requirements
 
 #RUN NO_DOCKER=true make dev
