@@ -64,12 +64,12 @@ ENV AKENEO_PIM_URL=http://localhost:8080 \
 RUN mysql -h"$APP_DATABASE_HOST":"$APP_DATABASE_PORT" -u"$APP_DATABASE_USER" -p"$APP_DATABASE_PASSWORD" -e "SELECT 1" || echo "MySQL connection failed!"
 
 # Instala Akeneo PIM
-#RUN php /usr/local/bin/composer create-project --prefer-dist \
-#    akeneo/pim-community-standard /srv/pim "dev-master@dev" && \
-#    php bin/console pim:install --force
+RUN php /usr/local/bin/composer create-project --prefer-dist \
+    akeneo/pim-community-standard /srv/pim "dev-master@dev" && \
+    php bin/console pim:install --force
 
 # Exponer el puerto predeterminado de Akeneo
-#EXPOSE 8080
+EXPOSE 8080
 
 # Comando de inicio
-#CMD ["php-fpm"]
+CMD ["php-fpm"]
