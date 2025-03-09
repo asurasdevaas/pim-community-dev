@@ -83,4 +83,9 @@ EXPOSE 8080
 
 #RUN php bin/console pim:installer:check-requirements
 
-RUN NO_DOCKER=true make dev
+RUN curl -X GET "http://elasticsearch.railway.internal:9200"
+
+RUN curl -X GET "http://elasticsearch.railway.internal"
+
+
+#RUN NO_DOCKER=true make dev
