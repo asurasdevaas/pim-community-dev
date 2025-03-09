@@ -83,4 +83,4 @@ EXPOSE 8080
 
 #RUN php bin/console pim:installer:check-requirements
 
-RUN NO_DOCKER=true make prod
+RUN NO_DOCKER=true make dev
