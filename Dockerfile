@@ -69,6 +69,8 @@ RUN apt-get update && apt-get install -y \
     && npm install -g yarn \
     && rm -rf /var/lib/apt/lists/*
 
+COPY docker/supervisord.conf /usr/bin/supervisord
+
 
 # Validar conexión a MySQL
 #RUN mysql -h"$APP_DATABASE_HOST" -u"$APP_DATABASE_USER" -p"$APP_DATABASE_PASSWORD" -e "SELECT 1" || echo "MySQL connection failed!"
