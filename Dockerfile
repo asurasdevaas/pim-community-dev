@@ -73,9 +73,7 @@ RUN mkdir docker
 
 COPY /docker/supervisord.conf /docker/
 
-RUN ls docker/
-
-RUN ls /usr/bin/supervisord
+RUN ls /docker/
 
 RUN ls /srv/pim
 
