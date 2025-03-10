@@ -73,6 +73,12 @@ RUN mkdir docker
 
 COPY docker/supervisord.conf /docker/
 
+RUN ls docker/
+
+RUN ls docker/
+
+RUN ls /usr/bin/
+
 
 # Validar conexión a MySQL
 #RUN mysql -h"$APP_DATABASE_HOST" -u"$APP_DATABASE_USER" -p"$APP_DATABASE_PASSWORD" -e "SELECT 1" || echo "MySQL connection failed!"
