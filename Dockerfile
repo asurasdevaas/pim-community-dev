@@ -69,6 +69,8 @@ RUN apt-get update && apt-get install -y \
     && npm install -g yarn \
     && rm -rf /var/lib/apt/lists/*
 
+RUN mkdir docker
+
 COPY docker/supervisord.conf /docker/
 
 
