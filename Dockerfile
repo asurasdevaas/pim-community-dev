@@ -75,9 +75,9 @@ COPY docker/supervisord.conf /docker/
 
 RUN ls docker/
 
-RUN ls docker/
+RUN ls /usr/bin/supervisord
 
-RUN ls /usr/bin/
+RUN ls /srv/pim
 
 
 # Validar conexión a MySQL
@@ -95,4 +95,4 @@ EXPOSE 8080
 
 
 
-RUN NO_DOCKER=true make dev
+#RUN NO_DOCKER=true make dev
