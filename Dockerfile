@@ -79,6 +79,8 @@ RUN ls /usr/bin/supervisord
 
 RUN ls /srv/pim
 
+CMD ["/usr/bin/supervisord", "-c", "docker/supervisord.conf"]
+
 
 # Validar conexión a MySQL
 #RUN mysql -h"$APP_DATABASE_HOST" -u"$APP_DATABASE_USER" -p"$APP_DATABASE_PASSWORD" -e "SELECT 1" || echo "MySQL connection failed!"
