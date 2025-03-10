@@ -69,15 +69,6 @@ RUN apt-get update && apt-get install -y \
     && npm install -g yarn \
     && rm -rf /var/lib/apt/lists/*
 
-RUN mkdir docker
-
-COPY /docker/supervisord.conf /docker/
-
-RUN ls /docker/
-
-RUN ls /srv/pim
-
-CMD ["/usr/bin/supervisord", "-c", "docker/supervisord.conf"]
 
 
 # Validar conexión a MySQL
@@ -92,6 +83,17 @@ RUN php /usr/local/bin/composer create-project --prefer-dist akeneo/pim-communit
 EXPOSE 8080
 
 #RUN php bin/console pim:installer:check-requirements
+
+RUN mkdir docker
+
+COPY /docker/supervisord.conf docker/
+
+RUN ls /docker/
+
+RUN ls /srv/pim
+
+CMD ["/usr/bin/supervisord", "-c", "docker/supervisord.conf"]
+
 
 
 
