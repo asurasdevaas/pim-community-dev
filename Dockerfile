@@ -71,7 +71,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN mkdir docker
 
-COPY docker/supervisord.conf /docker/
+COPY /docker/supervisord.conf /docker/
 
 RUN ls docker/
 
