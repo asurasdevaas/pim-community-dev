@@ -18,7 +18,7 @@ ENV APP_CONNECTION_ERROR_INDEX_NAME=akeneo_connectivity_connection_error \
     APP_ELASTICSEARCH_MAX_CHUNK_SIZE_CHARACTERS=100000000 \
     APP_ENV=prod \
     APP_EVENTS_API_DEBUG_INDEX_NAME=akeneo_connectivity_connection_events_api_debug \
-    APP_INDEX_HOSTS=elasticsearch.railway.internal \
+    APP_INDEX_HOSTS=elasticsearch.railway.internal:9200 \
     APP_PRODUCT_AND_PRODUCT_MODEL_INDEX_NAME=akeneo_pim_product_and_product_model \
     APP_SECRET=ThisTokenIsNotSoSecretChangeIt \
     FLAG_COMMUNICATION_CHANNEL_ENABLED=1 \
@@ -83,9 +83,6 @@ EXPOSE 8080
 
 #RUN php bin/console pim:installer:check-requirements
 
-RUN curl -X GET "http://elasticsearch.railway.internal:9200"
-
-RUN curl -X GET "http://elasticsearch.railway.internal"
 
 
-#RUN NO_DOCKER=true make dev
+RUN NO_DOCKER=true make dev
