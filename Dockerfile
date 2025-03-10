@@ -69,7 +69,7 @@ RUN apt-get update && apt-get install -y \
     && npm install -g yarn \
     && rm -rf /var/lib/apt/lists/*
 
-COPY docker/supervisord.conf /usr/bin/supervisord
+COPY docker/supervisord.conf /docker/
 
 
 # Validar conexión a MySQL
