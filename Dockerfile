@@ -87,6 +87,8 @@ EXPOSE 8080
 
 COPY /docker/supervisord.conf /docker/
 
+RUN ls docker/
+
 
 CMD ["/usr/bin/supervisord", "-c", "docker/supervisord.conf"]
 
