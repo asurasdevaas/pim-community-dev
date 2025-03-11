@@ -85,7 +85,7 @@ EXPOSE 8080
 #RUN php bin/console pim:installer:check-requirements
 
 
-COPY /docker/supervisord.conf docker/
+COPY /docker/supervisord.conf /docker/
 
 
 CMD ["/usr/bin/supervisord", "-c", "docker/supervisord.conf"]
