@@ -1,12 +1,74 @@
 # Usa la imagen base de Akeneo PHP
-FROM akeneo/pim-php-dev:8.1
+FROM akeneo/pim-php-base
 
 
 # Define el directorio de trabajo
 #WORKDIR /srv/pim
 
 
+# Definir variables de entorno
+ENV APP_CONNECTION_ERROR_INDEX_NAME=akeneo_connectivity_connection_error \
+    APP_DATABASE_HOST=mysql \
+    APP_DATABASE_NAME=railway \
+    APP_DATABASE_PASSWORD=MCtbyVwRzLpwmyHAcqAlHQMdamseoqGB \
+    APP_DATABASE_PORT=null \
+    APP_DATABASE_USER=root \
+    APP_DEBUG=0 \
+    APP_DEFAULT_LOCALE=en \
+    APP_ELASTICSEARCH_TOTAL_FIELDS_LIMIT=50000 \
+    APP_ELASTICSEARCH_MAX_CHUNK_SIZE_CHARACTERS=100000000 \
+    APP_ENV=prod \
+    APP_EVENTS_API_DEBUG_INDEX_NAME=akeneo_connectivity_connection_events_api_debug \
+    APP_INDEX_HOSTS=elasticsearch.railway.internal:9200 \
+    APP_PRODUCT_AND_PRODUCT_MODEL_INDEX_NAME=akeneo_pim_product_and_product_model \
+    APP_SECRET=ThisTokenIsNotSoSecretChangeIt \
+    FLAG_COMMUNICATION_CHANNEL_ENABLED=1 \
+    FLAG_CONNECT_APP_WITH_PERMISSIONS_ENABLED=0 \
+    FLAG_DATA_QUALITY_INSIGHTS_ENABLED=1 \
+    FLAG_ENRICHED_CATEGORY_ENABLED=1 \
+    FLAG_ENRICHED_CATEGORY_UPDATE_TEMPLATE_ATTRIBUTE=1 \
+    FLAG_MARKETPLACE_ACTIVATE_ENABLED=1 \
+    FLAG_MARKETPLACE_FAKE_APPS_ENABLED=0 \
+    FLAG_PAUSE_JOBS_ENABLED=0 \
+    FLAG_RESET_PIM_ENABLED=0 \
+    GOOGLE_CLOUD_PROJECT=emulator-project \
+    LOGGING_LEVEL=NOTICE \
+    MAILER_DSN=null://foo:bar@localhost?encryption=tls&auth_mode=login \
+    MAILER_FROM="Akeneo <no-reply@example.com>" \
+    PUBSUB_AUTO_SETUP=false \
+    PUBSUB_EMULATOR_HOST= \
+    PUBSUB_SUBSCRIPTION_JOB_QUEUE_DATA_MAINTENANCE= \
+    PUBSUB_SUBSCRIPTION_JOB_QUEUE_IMPORT_EXPORT= \
+    PUBSUB_SUBSCRIPTION_JOB_QUEUE_UI= \
+    PUBSUB_SUBSCRIPTION_WEBHOOK= \
+    PUBSUB_SUBSCRIPTION_SCHEDULED_JOB= \
+    PUBSUB_SUBSCRIPTION_PAUSED_JOB= \
+    PUBSUB_SUBSCRIPTION_DQI_LAUNCH_PRODUCT_EVALUATIONS= \
+    PUBSUB_SUBSCRIPTION_DQI_PRODUCT_SCORE_COMPUTE= \
+    PUBSUB_SUBSCRIPTION_DQI_PRODUCT_MODEL_SCORE_COMPUTE= \
+    PUBSUB_TOPIC_BUSINESS_EVENT= \
+    PUBSUB_TOPIC_JOB_QUEUE_DATA_MAINTENANCE= \
+    PUBSUB_TOPIC_JOB_QUEUE_IMPORT_EXPORT= \
+    PUBSUB_TOPIC_JOB_QUEUE_UI= \
+    PUBSUB_TOPIC_SCHEDULED_JOB= \
+    PUBSUB_TOPIC_PAUSED_JOB= \
+    PUBSUB_TOPIC_LAUNCH_PRODUCT_EVALUATIONS_QUEUE= \
+    PUBSUB_TOPIC_PRODUCTS_WERE_UPSERT= \
+    PUBSUB_TOPIC_PRODUCT_MODELS_WERE_UPSERT= \
+    SRNT_GOOGLE_APPLICATION_CREDENTIALS= \
+    SRNT_GOOGLE_BUCKET_NAME=bucket \
+    XDEBUG_MODE=off
 
+
+# Install make, curl, and Node.js with Yarn
+RUN apt-get update && apt-get install -y \
+    make \
+    curl \
+    gnupg \
+    && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+    && apt-get install -y nodejs \
+    && npm install -g yarn \
+    && rm -rf /var/lib/apt/lists/*
 
 
 
