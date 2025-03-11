@@ -78,6 +78,12 @@ RUN apt-get update && apt-get install -y \
 
 RUN rm -rf /srv/pim/*
 
+CMD ["/usr/bin/supervisord", "-c", "docker/supervisord.conf"]
+
+CMD /usr/bin/supervisord -c docker/supervisord.conf
+
+RUN cat docker/supervisord.conf
+
 # Instala Akeneo PIM
 RUN php /usr/local/bin/composer create-project --prefer-dist akeneo/pim-community-standard /srv/pim "dev-master@dev"
 
@@ -86,10 +92,8 @@ EXPOSE 8080
 
 #RUN php bin/console pim:installer:check-requirements
 
-RUN cat docker/supervisord.conf
 
-CMD ["/usr/bin/supervisord", "-c", "docker/supervisord.conf"]
 
-CMD /usr/bin/supervisord -c docker/supervisord.conf
+
 
 #RUN NO_DOCKER=true make dev
