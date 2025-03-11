@@ -13,7 +13,7 @@ ENV APP_CONNECTION_ERROR_INDEX_NAME=akeneo_connectivity_connection_error \
     APP_DATABASE_PASSWORD=MCtbyVwRzLpwmyHAcqAlHQMdamseoqGB \
     APP_DATABASE_PORT=null \
     APP_DATABASE_USER=root \
-    APP_DEBUG=0 \
+    APP_DEBUG=1 \
     APP_DEFAULT_LOCALE=en \
     APP_ELASTICSEARCH_TOTAL_FIELDS_LIMIT=50000 \
     APP_ELASTICSEARCH_MAX_CHUNK_SIZE_CHARACTERS=100000000 \
@@ -32,7 +32,7 @@ ENV APP_CONNECTION_ERROR_INDEX_NAME=akeneo_connectivity_connection_error \
     FLAG_PAUSE_JOBS_ENABLED=0 \
     FLAG_RESET_PIM_ENABLED=0 \
     GOOGLE_CLOUD_PROJECT=emulator-project \
-    LOGGING_LEVEL=NOTICE \
+    LOGGING_LEVEL=ALERT \
     MAILER_DSN=null://foo:bar@localhost?encryption=tls&auth_mode=login \
     MAILER_FROM="Akeneo <no-reply@example.com>" \
     PUBSUB_AUTO_SETUP=false \
