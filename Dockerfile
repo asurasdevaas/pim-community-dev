@@ -1,5 +1,5 @@
 # Usa la imagen base de Akeneo PHP
-FROM akeneo/pim-php-dev:6.0
+FROM xcoding/akeneo7-pim-php-xcbase:latest-8.1-c2-n14
 
 
 # Define el directorio de trabajo
