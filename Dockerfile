@@ -3,7 +3,7 @@ FROM akeneo/pim-php-dev:8.1
 
 
 # Define el directorio de trabajo
-WORKDIR /srv/pim
+#WORKDIR /srv/pim
 
 
 
@@ -88,7 +88,7 @@ RUN rm -rf /srv/pim/*
 #RUN php /usr/local/bin/composer create-project --prefer-dist akeneo/pim-community-standard /srv/pim "dev-master@dev"
 
 # Exponer el puerto predeterminado de Akeneo
-EXPOSE 8080
+#EXPOSE 8080
 
 #RUN php bin/console pim:installer:check-requirements
 
