@@ -81,7 +81,7 @@ ENV APP_CONNECTION_ERROR_INDEX_NAME=akeneo_connectivity_connection_error \
 RUN php /usr/local/bin/composer create-project --prefer-dist akeneo/pim-community-standard /srv/pim "dev-master@dev"
 
 # Exponer el puerto predeterminado de Akeneo
-EXPOSE 8080
+EXPOSE 80
 
 #RUN php bin/console pim:installer:check-requirements
 
