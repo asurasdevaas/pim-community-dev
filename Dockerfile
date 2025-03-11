@@ -3,7 +3,7 @@ FROM akeneo/pim-php-dev:6.0
 
 
 # Define el directorio de trabajo
-#WORKDIR /srv/pim
+WORKDIR /srv/pim
 
 
 # Definir variables de entorno
@@ -61,7 +61,7 @@ ENV APP_CONNECTION_ERROR_INDEX_NAME=akeneo_connectivity_connection_error \
 
 
 # Install make, curl, and Node.js with Yarn
-#RUN apt-get update && apt-get install -y make curl gnupg && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && apt-get install -y nodejs && npm install -g yarn && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y make curl gnupg && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && apt-get install -y nodejs && npm install -g yarn && rm -rf /var/lib/apt/lists/*
 
 
 
@@ -78,10 +78,10 @@ ENV APP_CONNECTION_ERROR_INDEX_NAME=akeneo_connectivity_connection_error \
 #RUN cat docker/supervisord.conf
 
 # Instala Akeneo PIM
-#RUN php /usr/local/bin/composer create-project --prefer-dist akeneo/pim-community-standard /srv/pim "dev-master@dev"
+RUN php /usr/local/bin/composer create-project --prefer-dist akeneo/pim-community-standard /srv/pim "dev-master@dev"
 
 # Exponer el puerto predeterminado de Akeneo
-#EXPOSE 8080
+EXPOSE 8080
 
 #RUN php bin/console pim:installer:check-requirements
 
@@ -89,4 +89,4 @@ ENV APP_CONNECTION_ERROR_INDEX_NAME=akeneo_connectivity_connection_error \
 
 
 
-#RUN NO_DOCKER=true make dev
+RUN NO_DOCKER=true make dev
