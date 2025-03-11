@@ -1,5 +1,5 @@
 # Usa la imagen base de Akeneo PHP
-FROM akeneo/pim-php-base:master
+FROM akeneo/pim-php-dev:6.0
 
 
 # Define el directorio de trabajo
