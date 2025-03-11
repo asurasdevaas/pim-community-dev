@@ -5,6 +5,8 @@ FROM akeneo/pim-php-dev:8.1
 # Define el directorio de trabajo
 WORKDIR /srv/pim
 
+
+
 # Definir variables de entorno
 ENV APP_CONNECTION_ERROR_INDEX_NAME=akeneo_connectivity_connection_error \
     APP_DATABASE_HOST=mysql \
@@ -93,7 +95,7 @@ RUN ls docker/
 
 CMD ["/usr/bin/supervisord", "-c", "docker/supervisord.conf"]
 
-
+USER www-data
 
 
 #RUN NO_DOCKER=true make dev
