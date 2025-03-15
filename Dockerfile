@@ -1,8 +1,6 @@
 # Usa la imagen base de Akeneo
 FROM akeneo/pim-php-dev:8.1
 
-ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
-
 # Establece el directorio de trabajo
 WORKDIR /srv/pim
 # Definir variables de entorno
@@ -60,13 +58,7 @@ ENV APP_CONNECTION_ERROR_INDEX_NAME=akeneo_connectivity_connection_error \
 
 RUN apt-get update && apt-get install -y make && rm -rf /var/lib/apt/lists/*
 
-ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
-
 # Ejecuta la instalación de Akeneo
-RUN php /usr/local/bin/composer create-project akeneo/pim-community-standard /srv/pim "7.0.*@stable"
-
-RUN ls -lah /srv/pim
-
-RUN cat Makefile
+#RUN php /usr/local/bin/composer create-project akeneo/pim-community-standard /srv/pim "7.0.*@stable"
 
 CMD ["make"]
