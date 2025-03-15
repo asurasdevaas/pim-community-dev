@@ -69,4 +69,4 @@ RUN ls -lah /srv/pim
 
 RUN cat Makefile
 
-CMD ["sh", "-c", "ls -lah && cd /srv/pim && ls -lah"]
+CMD ["make"]
