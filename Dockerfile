@@ -1,5 +1,7 @@
 # Usa la imagen base de Akeneo
 FROM akeneo/pim-php-dev:8.1
+
+RUN usermod -u 1000 www-data && groupmod -g 1000 www-data
 # Establece el usuario
 USER www-data
 # Establece el directorio de trabajo
