@@ -66,4 +66,4 @@ RUN ls -lah /srv/pim
 
 RUN cat Makefile
 
-CMD ["sh", "-c", "cd /srv/pim && make"]
+CMD ["sh", "-c", "cd /app && ls -lah"]
