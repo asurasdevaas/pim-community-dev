@@ -1,6 +1,8 @@
 # Usa la imagen base de Akeneo
 FROM akeneo/pim-php-dev:8.1
 
+ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
+
 # Establece el directorio de trabajo
 WORKDIR /srv/pim
 # Definir variables de entorno
