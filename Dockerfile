@@ -1,7 +1,7 @@
 # Usa la imagen base de Akeneo
 FROM akeneo/pim-php-dev:8.1
 # Establece el usuario
-#USER www-data
+USER www-data
 # Establece el directorio de trabajo
 WORKDIR /srv/pim
 # Definir variables de entorno
