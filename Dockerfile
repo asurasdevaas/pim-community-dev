@@ -59,7 +59,7 @@ ENV APP_CONNECTION_ERROR_INDEX_NAME=akeneo_connectivity_connection_error \
 RUN apt-get update && apt-get install -y make && rm -rf /var/lib/apt/lists/*
 
 # Ejecuta la instalación de Akeneo
-RUN php /usr/local/bin/composer create-project akeneo/pim-community-standard /srv/pim "8.0.*@stable"
+RUN php /usr/local/bin/composer create-project akeneo/pim-community-standard /srv/pim "7.0.*@stable"
 
 RUN ls -lah /srv/pim
 
