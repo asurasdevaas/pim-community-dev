@@ -58,5 +58,4 @@ ENV APP_CONNECTION_ERROR_INDEX_NAME=akeneo_connectivity_connection_error \
     XDEBUG_MODE=debug
     
 # Ejecuta la instalación de Akeneo
-RUN php /usr/local/bin/composer create-project \
-    akeneo/pim-community-standard /srv/pim "7.0.*@stable"
+RUN php /usr/local/bin/composer create-project akeneo/pim-community-standard /srv/pim "7.0.*@stable"
