@@ -56,6 +56,7 @@ ENV APP_CONNECTION_ERROR_INDEX_NAME=akeneo_connectivity_connection_error \
     SRNT_GOOGLE_APPLICATION_CREDENTIALS= \
     SRNT_GOOGLE_BUCKET_NAME=bucket \
     XDEBUG_MODE=debug
+    NO_DOCKER=true
 
 RUN apt-get update && apt-get install -y make && rm -rf /var/lib/apt/lists/*
 
@@ -65,3 +66,5 @@ RUN php /usr/local/bin/composer create-project akeneo/pim-community-standard /sr
 RUN ls -lah /srv/pim
 
 RUN cat Makefile
+
+CMD ["make"]
