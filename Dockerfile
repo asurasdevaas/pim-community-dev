@@ -63,4 +63,15 @@ RUN apt-get update && apt-get install -y make curl gnupg && curl -fsSL https://d
 # Ejecuta la instalación de Akeneo
 RUN php /usr/local/bin/composer create-project akeneo/pim-community-standard /srv/pim "7.0.*@stable"
 
-CMD ["make"]
+RUN make dependencies
+RUN make cache
+RUN make assets
+RUN make front-packages
+RUN make javascript-prod
+RUN make css
+RUN make javascript-extensions 
+RUN make database O="--catalog vendor/akeneo/pim-community-dev/src/Akeneo/Platform/Installer/back/src/Infrastructure/Symfony/Resources/fixtures/minimal"
+
+
+# Comando por defecto (puedes ajustarlo según sea necesario)
+CMD ["bin/console", "pim:install"]
