@@ -1,11 +1,9 @@
-# Usa la imagen base de Akeneo PHP
-FROM xcoding/akeneo7-pim-php-xcbase:latest-8.1-c2-n14
-
-
-# Define el directorio de trabajo
+# Usa la imagen base de Akeneo
+FROM akeneo/pim-php-dev:8.1
+# Establece el usuario
+USER www-data
+# Establece el directorio de trabajo
 WORKDIR /srv/pim
-
-
 # Definir variables de entorno
 ENV APP_CONNECTION_ERROR_INDEX_NAME=akeneo_connectivity_connection_error \
     APP_DATABASE_HOST=mysql \
@@ -57,37 +55,8 @@ ENV APP_CONNECTION_ERROR_INDEX_NAME=akeneo_connectivity_connection_error \
     PUBSUB_TOPIC_PRODUCT_MODELS_WERE_UPSERT= \
     SRNT_GOOGLE_APPLICATION_CREDENTIALS= \
     SRNT_GOOGLE_BUCKET_NAME=bucket \
-    XDEBUG_MODE=off
-
-
-# Install make, curl, and Node.js with Yarn
-#RUN apt-get update && apt-get install -y make curl gnupg && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && apt-get install -y nodejs && npm install -g yarn && rm -rf /var/lib/apt/lists/*
-
-
-
-
-# Validar conexión a MySQL
-#RUN mysql -h"$APP_DATABASE_HOST" -u"$APP_DATABASE_USER" -p"$APP_DATABASE_PASSWORD" -e "SELECT 1" || echo "MySQL connection failed!"
-
-#RUN rm -rf /srv/pim/*
-
-#CMD ["/usr/bin/supervisord", "-c", "docker/supervisord.conf"]
-
-#CMD /usr/bin/supervisord -c docker/supervisord.conf
-
-#RUN cat docker/supervisord.conf
-
-# Instala Akeneo PIM
-RUN php /usr/local/bin/composer create-project --prefer-dist akeneo/pim-community-standard /srv/pim "dev-master@dev"
-
-# Exponer el puerto predeterminado de Akeneo
-EXPOSE 80
-EXPOSE 8080
-
-#RUN php bin/console pim:installer:check-requirements
-
-
-
-
-
-RUN NO_DOCKER=true make dev
+    XDEBUG_MODE=debug
+    
+# Ejecuta la instalación de Akeneo
+RUN php /usr/local/bin/composer create-project \
+    akeneo/pim-community-standard /srv/pim "7.0.*@stable"
