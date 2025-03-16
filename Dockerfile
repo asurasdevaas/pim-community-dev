@@ -70,8 +70,9 @@ RUN make front-packages
 RUN make javascript-prod
 RUN make css
 RUN make javascript-extensions 
-RUN make database O="--catalog vendor/akeneo/pim-community-dev/src/Akeneo/Platform/Installer/back/src/Infrastructure/Symfony/Resources/fixtures/minimal"
+RUN mysql -h"$APP_DATABASE_HOST" -u"$APP_DATABASE_USER" -p"$APP_DATABASE_PASSWORD" -e "SELECT 1" || echo "MySQL connection failed!"
+#RUN make database O="--catalog vendor/akeneo/pim-community-dev/src/Akeneo/Platform/Installer/back/src/Infrastructure/Symfony/Resources/fixtures/minimal"
 
 
 # Comando por defecto (puedes ajustarlo según sea necesario)
-CMD ["bin/console", "pim:install"]
+#CMD ["bin/console", "pim:install"]
