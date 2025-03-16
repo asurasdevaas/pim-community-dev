@@ -3,4 +3,4 @@ FROM akeneo/pim-php-dev:8.1
 
 RUN apt-get update && apt-get install -y make curl gnupg && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && apt-get install -y nodejs && npm install -g yarn && rm -rf /var/lib/apt/lists/*
 
-RUN curl -X GET http://localhost:9200/_cluster/health?pretty
+RUN curl -X GET http://elasticsearch:9200/_cluster/health?pretty
