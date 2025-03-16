@@ -75,4 +75,7 @@ RUN make database O="--catalog vendor/akeneo/pim-community-dev/src/Akeneo/Platfo
 
 RUN echo "NODE_ENV is set to: $APP_DATABASE_HOST" &&  echo "APP_PORT is set to: $APP_DATABASE_PORT"
 # Comando por defecto (puedes ajustarlo según sea necesario)
+
+EXPOSE 8080
+
 CMD ["bin/console"]
