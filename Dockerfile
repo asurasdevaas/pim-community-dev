@@ -73,6 +73,6 @@ RUN make javascript-extensions
 RUN mysql -h"$APP_DATABASE_HOST" -u"$APP_DATABASE_USER" -p"$APP_DATABASE_PASSWORD" -e "SELECT 1" || echo "MySQL connection failed!"
 #RUN make database O="--catalog vendor/akeneo/pim-community-dev/src/Akeneo/Platform/Installer/back/src/Infrastructure/Symfony/Resources/fixtures/minimal"
 
-
+RUN echo "NODE_ENV is set to: $APP_DATABASE_HOST" && \ echo "APP_PORT is set to: $APP_DATABASE_PORT"
 # Comando por defecto (puedes ajustarlo según sea necesario)
 #CMD ["bin/console", "pim:install"]
