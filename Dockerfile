@@ -72,26 +72,14 @@ RUN make css
 RUN make javascript-extensions 
 RUN mysql -h"$APP_DATABASE_HOST" -u"$APP_DATABASE_USER" -p"$APP_DATABASE_PASSWORD" -e "SELECT 1" || echo "MySQL connection failed!"
 
-RUN apt update && apt install -y php-pear php-dev
-
-RUN apt-get update && apt-get install -y \
-    php-pear php-dev php-xml \
-    pkg-config && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
-
-RUN apt-get update && apt-get install -y \
-    libpng-dev libjpeg-dev libfreetype6-dev \
-    && docker-php-ext-install gd \
-    && docker-php-ext-enable gd
-
-
-    
-RUN pecl install xdebug && docker-php-ext-enable xdebug
-
-RUN make database O="--catalog vendor/akeneo/pim-community-dev/src/Akeneo/Platform/Installer/back/src/Infrastructure/Symfony/Resources/fixtures/minimal"
 
 RUN echo "NODE_ENV is set to: $APP_DATABASE_HOST" &&  echo "APP_PORT is set to: $APP_DATABASE_PORT"
 # Comando por defecto (puedes ajustarlo según sea necesario)
+
+
+RUN php bin/console doctrine:database:drop --force --if-exists
+RUN php bin/console doctrine:database:create --if-not-exists
+#RUN php bin/console pim:installer:db ${O}
 
 EXPOSE 8080
 
