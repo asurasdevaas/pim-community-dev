@@ -5,6 +5,8 @@ RUN apt-get update && apt-get install -y make curl gnupg && curl -fsSL https://d
 
 RUN curl -X DELETE "http://elasticsearch:9200/_all"
 
+RUN curl -X DELETE "http://elasticsearch:9200/_all"
+
 
 
 
