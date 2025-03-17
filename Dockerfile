@@ -75,7 +75,7 @@ RUN mysql -h"$APP_DATABASE_HOST" -u"$APP_DATABASE_USER" -p"$APP_DATABASE_PASSWOR
 RUN apt update && apt install -y php-pear php-dev
 
 RUN apt-get update && apt-get install -y \
-    php8.1-pear php8.1-dev php8.1-xml \
+    php-pear php-dev php-xml \
     pkg-config && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
