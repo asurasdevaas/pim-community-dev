@@ -79,6 +79,12 @@ RUN apt-get update && apt-get install -y \
     pkg-config && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
+RUN apt-get update && apt-get install -y \
+    libpng-dev libjpeg-dev libfreetype6-dev \
+    && docker-php-ext-install gd \
+    && docker-php-ext-enable gd
+
+
     
 RUN pecl install xdebug && docker-php-ext-enable xdebug
 
