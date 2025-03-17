@@ -74,6 +74,7 @@ RUN mysql -h"$APP_DATABASE_HOST" -u"$APP_DATABASE_USER" -p"$APP_DATABASE_PASSWOR
 
 RUN apt update && apt install -y php-pear php-dev
 
+RUN apt-get install php-pear pkg-config libbson-1.0 libmongoc-1.0-0 php-xml php7.0-xml php-dev
 
 RUN pecl install xdebug && docker-php-ext-enable xdebug
 
