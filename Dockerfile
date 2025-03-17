@@ -72,6 +72,9 @@ RUN make css
 RUN make javascript-extensions 
 RUN mysql -h"$APP_DATABASE_HOST" -u"$APP_DATABASE_USER" -p"$APP_DATABASE_PASSWORD" -e "SELECT 1" || echo "MySQL connection failed!"
 
+RUN apt update && apt install -y php-pear php-dev
+
+
 RUN pecl install xdebug && docker-php-ext-enable xdebug
 
 RUN make database O="--catalog vendor/akeneo/pim-community-dev/src/Akeneo/Platform/Installer/back/src/Infrastructure/Symfony/Resources/fixtures/minimal"
