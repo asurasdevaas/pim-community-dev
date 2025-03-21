@@ -83,4 +83,4 @@ RUN php bin/console doctrine:database:create --if-not-exists
 
 EXPOSE 8080
 
-CMD ["bin/console"]
+CMD ["bin/console", "pim:installer:db"]
