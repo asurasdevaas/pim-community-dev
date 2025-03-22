@@ -83,4 +83,4 @@ RUN php bin/console doctrine:database:create --if-not-exists
 
 EXPOSE 8080
 
-CMD ["bin/console", "pim:installer:db"]
+CMD ["bin/console", "pim:installer:db", "--catalog vendor/akeneo/pim-community-dev/src/Akeneo/Platform/Installer/back/src/Infrastructure/Symfony/Resources/fixtures/icecat_demo_dev"]
