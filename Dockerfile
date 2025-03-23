@@ -56,29 +56,13 @@ ENV APP_CONNECTION_ERROR_INDEX_NAME=akeneo_connectivity_connection_error \
     SRNT_GOOGLE_BUCKET_NAME=bucket \
     XDEBUG_MODE=debug NO_DOCKER=true APP_ENV=dev
 
-
-
 RUN apt-get update && apt-get install -y make curl gnupg && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && apt-get install -y nodejs && npm install -g yarn && rm -rf /var/lib/apt/lists/*
 
-# Ejecuta la instalación de Akeneo
 RUN php /usr/local/bin/composer create-project akeneo/pim-community-standard /srv/pim "7.0.*@stable"
 
-RUN make dependencies
-RUN make cache
-RUN make assets
-RUN make front-packages
-RUN make javascript-prod
-RUN make css
-RUN make javascript-extensions 
 RUN mysql -h"$APP_DATABASE_HOST" -u"$APP_DATABASE_USER" -p"$APP_DATABASE_PASSWORD" -e "SELECT 1" || echo "MySQL connection failed!"
 
-
-RUN echo "NODE_ENV is set to: $APP_DATABASE_HOST" &&  echo "APP_PORT is set to: $APP_DATABASE_PORT"
-# Comando por defecto (puedes ajustarlo según sea necesario)
-
-
-
-
 EXPOSE 8080
+EXPOSE 80
 
 CMD ["make", "dev"]
