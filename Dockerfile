@@ -77,10 +77,8 @@ RUN echo "NODE_ENV is set to: $APP_DATABASE_HOST" &&  echo "APP_PORT is set to: 
 # Comando por defecto (puedes ajustarlo según sea necesario)
 
 
-RUN php bin/console doctrine:database:drop --force --if-exists
-RUN php bin/console doctrine:database:create --if-not-exists
-#RUN php bin/console pim:installer:db ${O}
+
 
 EXPOSE 8080
 
-CMD ["bin/console", "pim:installer:db", "--catalog", "vendor/akeneo/pim-community-dev/src/Akeneo/Platform/Installer/back/src/Infrastructure/Symfony/Resources/fixtures/icecat_demo_dev"]
+CMD ["make", "dev"]
